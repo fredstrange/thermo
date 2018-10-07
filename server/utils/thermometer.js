@@ -1,32 +1,33 @@
 const five = require('johnny-five')
-const mockFirmata = require('mock-firmata')
 
-function Thermometer (pin) {
-  const board = new five.Board({
-    io: new mockFirmata.Firmata(),
-    debug: false,
-    repl: false
-  })
-  let currentTemperature = 0
+function Thermometer ({ pin, address, board }) {
+  let celsius = 0
+  let fahrenheit = 0
 
   board.on('ready', function () {
     const thermometer = new five.Thermometer({
       controller: 'DS18B20',
-      pin
+      pin,
+      address
     })
 
     thermometer.on('change', function () {
-      currentTemperature = this.celsius
+      celsius = this.celsius
+      fahrenheit = this.fahrenheit
       console.log(this.celsius + '°C')
     })
   })
 
-  function currentTemp () {
-    return currentTemperature
+  function data () {
+    return {
+      celsius,
+      fahrenheit,
+      address
+    }
   }
 
   return {
-    currentTemp
+    data
   }
 }
 

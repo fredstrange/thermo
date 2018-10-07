@@ -1,15 +1,12 @@
-const server = require('express')()
-const next = require('next')
+const App = require('./app')
+const config = require('./config.json')
 
-const apiRoutes = require('./server/routes')
+async function run () {
+  const dev = process.env.NODE_ENV !== 'production'
+  const app = await App(Object.assign({ dev }, config))
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const webHandler = app.getRequestHandler()
+  console.log('foo')
+  app.listen(3000)
+}
 
-app.prepare().then(() => {
-  server.use('/api', apiRoutes({ pins: [2] }))
-  server.get('*', webHandler)
-
-  server.listen(3000)
-})
+run()
