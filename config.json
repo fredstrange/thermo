@@ -1,58 +1,75 @@
 {
+  "groups": [
+    {
+      "id": "left_tank",
+      "type": "tank",
+      "label": "Left tank"
+    },
+    {
+      "id": "right_tank",
+      "type": "tank",
+      "label": "Right tank"
+    },
+    {
+      "id": "furnace",
+      "type": "furnace",
+      "label": "Wood stove"
+    }
+  ],
   "devices": [
     {
       "address": "0xabcdf",
       "pin": 2,
-      "label": "Left tank, bottom",
+      "label": "bottom",
       "index": 0,
       "group": "left_tank"
     },
     {
       "address": "0xabcdd",
       "pin": 2,
-      "label": "Left tank, middle",
+      "label": "middle",
       "index": 1,
       "group": "left_tank"
     },
     {
       "address": "0xabcdc",
       "pin": 2,
-      "label": "Left tank, top",
+      "label": "top",
       "index": 2,
       "group": "left_tank"
     },
     {
       "address": "0xabcdb",
       "pin": 3,
-      "label": "Right tank, bottom",
+      "label": "bottom",
       "index": 0,
       "group": "right_tank"
     },
     {
       "address": "0xabcda",
       "pin": 3,
-      "label": "Right tank, middle",
+      "label": "middle",
       "index": 1,
       "group": "right_tank"
     },
     {
       "address": "0xabcd1",
       "pin": 3,
-      "label": "Right tank, top",
+      "label": "top",
       "index": 2,
       "group": "right_tank"
     },
     {
       "address": "0xabcd2",
       "pin": 4,
-      "label": "Furnace chimney",
+      "label": "chimney",
       "index": 1,
       "group": "furnace"
     },
     {
       "address": "0xabcd3",
       "pin": 4,
-      "label": "Furnace inlet",
+      "label": "inlet",
       "index": 0,
       "group": "furnace"
     }

@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Furnace from '../components/furnice'
+import Tank from '../components/tank'
 
 export default class extends React.Component {
   static async getInitialProps ({ req }) {
@@ -13,21 +15,32 @@ export default class extends React.Component {
   }
 
   render () {
-    const groups = this.props.data
+    const { groups, temperatures } = this.props.data
 
     return (
       <div>
-        {Object.keys(groups).map(group => (
-          <div>
-            <div>Group: {group}</div>
-            {groups[group].map(thermometer => (
-              <div>
-                <span>{thermometer.label}: </span>
-                <span>{thermometer.celsius} C</span>
-              </div>
-            ))}
-          </div>
-        ))}
+        {groups.map(group => {
+          const isFurnace = group.type === 'furnace'
+          const isTank = group.type === 'tank'
+
+          //    console.log(temperatures[group.id])
+          //    console.log(temperatures)
+
+          return (
+            <div>
+              {isFurnace &&
+                <Furnace
+                  label={group.label}
+                  temperatures={temperatures[group.id]}
+                />}
+              {isTank &&
+                <Tank
+                  label={group.label}
+                  temperatures={temperatures[group.id]}
+                />}
+            </div>
+          )
+        })}
       </div>
     )
   }

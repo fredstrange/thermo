@@ -1,9 +1,9 @@
 const AsyncRouter = require('express-async-router').AsyncRouter
 const temperatures = require('./temperatues')
 
-function routes ({ devices = [] }) {
+function routes ({ devices = [], groups = [] }) {
   const router = AsyncRouter()
-  router.get('/temperatures', temperatures(devices))
+  router.get('/temperatures', temperatures(devices, groups))
 
   return router
 }
