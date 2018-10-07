@@ -20,56 +20,56 @@
     {
       "address": "0xabcdf",
       "pin": 2,
-      "label": "bottom",
+      "label": "Bottom",
       "index": 0,
       "group": "left_tank"
     },
     {
       "address": "0xabcdd",
       "pin": 2,
-      "label": "middle",
+      "label": "Middle",
       "index": 1,
       "group": "left_tank"
     },
     {
       "address": "0xabcdc",
       "pin": 2,
-      "label": "top",
+      "label": "Top",
       "index": 2,
       "group": "left_tank"
     },
     {
       "address": "0xabcdb",
       "pin": 3,
-      "label": "bottom",
+      "label": "Bottom",
       "index": 0,
       "group": "right_tank"
     },
     {
       "address": "0xabcda",
       "pin": 3,
-      "label": "middle",
+      "label": "Middle",
       "index": 1,
       "group": "right_tank"
     },
     {
       "address": "0xabcd1",
       "pin": 3,
-      "label": "top",
+      "label": "Top",
       "index": 2,
       "group": "right_tank"
     },
     {
       "address": "0xabcd2",
       "pin": 4,
-      "label": "chimney",
+      "label": "Chimney",
       "index": 1,
       "group": "furnace"
     },
     {
       "address": "0xabcd3",
       "pin": 4,
-      "label": "inlet",
+      "label": "Inlet",
       "index": 0,
       "group": "furnace"
     }

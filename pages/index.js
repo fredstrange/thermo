@@ -23,9 +23,6 @@ export default class extends React.Component {
           const isFurnace = group.type === 'furnace'
           const isTank = group.type === 'tank'
 
-          //    console.log(temperatures[group.id])
-          //    console.log(temperatures)
-
           return (
             <div>
               {isFurnace &&

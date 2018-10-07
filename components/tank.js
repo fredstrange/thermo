@@ -1,8 +1,13 @@
 export default ({ label, temperatures = [] }) => (
-  <div>
-    <div>{label}</div>
-    <div>Top: {temperatures[2].celsius} C</div>
-    <div>Middle: {temperatures[1].celsius} C</div>
-    <div>Bottom: {temperatures[0].celsius} C</div>
+  <div className='container'>
+    <style jsx>{`
+      .container {
+        margin: 10px
+      }
+    `}</style>
+    <h2>{label}</h2>
+    {temperatures.map(temperature => (
+      <div className='row'>{`${temperature.label}: ${temperature.celsius} C`}</div>
+    ))}
   </div>
 )

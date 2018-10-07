@@ -1,8 +1,13 @@
 export default ({ label, temperatures = [] }) => (
-  <div>
-    <div>{label}</div>
-    {/* for loop over temp.  */}
-    <div>{Chimney}: {temperatures[1].celsius} C</div>
-    <div>Inlet: {temperatures[0].celsius} C</div>
+  <div className='container'>
+    <style jsx>{`
+    .container {
+      margin: 10px
+    }
+  `}</style>
+    <h2>{label}</h2>
+    {temperatures.map(temperature => (
+      <div>{`${temperature.label}: ${temperature.celsius} C`}</div>
+    ))}
   </div>
 )
