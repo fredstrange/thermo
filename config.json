@@ -18,57 +18,49 @@
   ],
   "devices": [
     {
-      "address": "0xabcdf",
-      "pin": 2,
+      "address": "28-00000a0c6697",
       "label": "Bottom",
       "index": 0,
       "group": "left_tank"
     },
     {
-      "address": "0xabcdd",
-      "pin": 2,
+      "address": "28-000009a6f3e2",
       "label": "Middle",
       "index": 1,
       "group": "left_tank"
     },
     {
-      "address": "0xabcdc",
-      "pin": 2,
+      "address": "28-000009a7f126",
       "label": "Top",
       "index": 2,
       "group": "left_tank"
     },
     {
-      "address": "0xabcdb",
-      "pin": 3,
+      "address": "28-00000a0e6211",
       "label": "Bottom",
       "index": 0,
       "group": "right_tank"
     },
     {
-      "address": "0xabcda",
-      "pin": 3,
+      "address": "28-00000a0d46da",
       "label": "Middle",
       "index": 1,
       "group": "right_tank"
     },
     {
-      "address": "0xabcd1",
-      "pin": 3,
+      "address": "28-00000a0dd1a3",
       "label": "Top",
       "index": 2,
       "group": "right_tank"
     },
     {
-      "address": "0xabcd2",
-      "pin": 4,
+      "address": "28-000009a63f4d",
       "label": "Chimney",
       "index": 1,
       "group": "furnace"
     },
     {
-      "address": "0xabcd3",
-      "pin": 4,
+      "address": "28-000009a70346",
       "label": "Inlet",
       "index": 0,
       "group": "furnace"

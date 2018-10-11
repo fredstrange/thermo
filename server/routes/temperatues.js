@@ -1,4 +1,4 @@
-const Thermometers = require('../utils/thermometers')
+const Thermometers = require('../lib/thermometers')
 
 function Temperatures (devices = [], groups = []) {
   const thermometers = Thermometers(devices)

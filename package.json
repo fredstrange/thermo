@@ -8,20 +8,19 @@
   "scripts": {
     "dev": "nodemon --inspect  index.js",
     "build": "next build",
+    "server:dev": "NODE_ENV=production nodemon index.js",
     "start": "NODE_ENV=production node index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "express-async-router": "^0.1.13",
-    "johnny-five": "^1.0.0",
     "next": "^7.0.1",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
-    "mock-firmata": "^0.2.0",
     "nodemon": "^1.18.4"
   }
 }
