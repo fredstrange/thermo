@@ -1,10 +1,11 @@
 const Thermometers = require('../lib/thermometers')
 
-function Temperatures (devices = [], groups = []) {
-  const thermometers = Thermometers(devices)
+function Temperatures (devices = [], groups = [], Temperatures) {
+  const thermometers = Thermometers(devices, Temperatures)
 
-  return (req, res) => {
-    const temperatures = thermometers.getTemperatures()
+  return async (req, res) => {
+    const temperatures = await thermometers.getTemperatures()
+    console.log(temperatures)
 
     res.json({ groups, temperatures })
   }

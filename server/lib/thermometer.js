@@ -3,12 +3,12 @@ const path = require('path')
 const isPi = require('../utils/isPi')
 const PI_PATH = '/sys/bus/w1'
 const DEV_PATH = path.resolve(__dirname, '../fixtures')
-const INTERVAL = 5000
+const INTERVAL = 30000
+const tempRegx = /t=(\d+)/
 
-function Thermometer ({ address }) {
-  let celsius = 0
+function Thermometer ({ address, Temperatures }) {
   let timer = null
-  const devicePath = `${isPi()? PI_PATH : DEV_PATH}/devices/${address}/w1_slave`
+  const devicePath = `${isPi() ? PI_PATH : DEV_PATH}/devices/${address}/w1_slave`
 
   async function readTemperature () {
     const exists = await fsProm.stat(devicePath).catch(() => false)
@@ -16,11 +16,14 @@ function Thermometer ({ address }) {
 
     try {
       const file = await fsProm.readFile(devicePath, { encoding: 'utf8' })
-      const temperature = file.match(/(?:t=)(\d+)/)[1]
-      celsius = temperature / 1000
+      const temperature = tempRegx.exec(file)[1] / 1000
+
+      await Temperatures.create({
+        address,
+        temperature
+      })
     } catch (e) {
-      console.log(e)
-      console.log(`failed to open device file: ${address}`)
+      console.log(`failed to open device file: ${address}`, e)
     } finally {
       if (timer) {
         clearTimeout(timer)
@@ -31,9 +34,19 @@ function Thermometer ({ address }) {
 
   readTemperature()
 
-  function data () {
+  async function data () {
+    const response = await Temperatures.find({
+      where: {
+        address
+      },
+      limit: 1,
+      attributes: ['temperature', 'createdAt'],
+      order: [['createdAt', 'DESC']]
+    })
+    const temperature = response.getDataValue('temperature')
+
     return {
-      celsius,
+      temperature,
       address
     }
   }
