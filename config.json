@@ -64,6 +64,12 @@
       "label": "Inlet",
       "index": 0,
       "group": "furnace"
+    },
+    {
+      "address": "28-000009a70bad",
+      "label": "Not available",
+      "index": 2,
+      "group": "furnace"
     }
   ]
 }

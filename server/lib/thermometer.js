@@ -43,7 +43,8 @@ function Thermometer ({ address, Temperatures }) {
       attributes: ['temperature', 'createdAt'],
       order: [['createdAt', 'DESC']]
     })
-    const temperature = response.getDataValue('temperature')
+
+    const temperature = response ? response.getDataValue('temperature') : 'N/A'
 
     return {
       temperature,

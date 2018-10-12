@@ -9,13 +9,14 @@ export default class extends React.Component {
       .get(`http://${req.headers.host}/api/temperatures`)
       .catch(e => {
         console.log(e)
+        return { data: {} }
       })
 
     return { data }
   }
 
   render () {
-    const { groups, temperatures } = this.props.data
+    const { groups = [], temperatures } = this.props.data
 
     return (
       <div>
