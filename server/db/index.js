@@ -1,8 +1,12 @@
 const Sequelize = require('sequelize')
+const config = require('./config')
+const TemperaturesController = require('./controllers/temperatures')
 
-function DB (path) {
-  const db = new Sequelize(`sqlite:${path}`)
-  const Temperatures = db.import('./models/temperatures.js')
+function DB (sequelize) {
+  const c = config[process.env.NODE_ENV]
+  console.log(c)
+  const db = sequelize || new Sequelize(config[process.env.NODE_ENV])
+  const Temperatures = TemperaturesController(db)
 
   return {
     db,

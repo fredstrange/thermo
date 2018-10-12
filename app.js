@@ -8,7 +8,7 @@ const App = async ({ dev, devices, groups }) => {
   const app = next({ dev })
   const webHandler = app.getRequestHandler()
 
-  const db = DB(path.resolve(__dirname, './db.sqlite'))
+  const db = DB()
 
   await app.prepare()
   server.use('/api', apiRoutes({ devices, groups, db }))

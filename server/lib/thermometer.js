@@ -35,16 +35,7 @@ function Thermometer ({ address, Temperatures }) {
   readTemperature()
 
   async function data () {
-    const response = await Temperatures.find({
-      where: {
-        address
-      },
-      limit: 1,
-      attributes: ['temperature', 'createdAt'],
-      order: [['createdAt', 'DESC']]
-    })
-
-    const temperature = response ? response.getDataValue('temperature') : 'N/A'
+    const { temperature } = await Temperatures.findLatest(address)
 
     return {
       temperature,

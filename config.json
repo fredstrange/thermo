@@ -18,7 +18,7 @@
   ],
   "devices": [
     {
-      "address": "28-00000a0c6697",
+      "address": "28-000009a7f126",
       "label": "Bottom",
       "index": 0,
       "group": "left_tank"
@@ -30,7 +30,7 @@
       "group": "left_tank"
     },
     {
-      "address": "28-000009a7f126",
+      "address": "28-00000a0d46da",
       "label": "Top",
       "index": 2,
       "group": "left_tank"
@@ -42,7 +42,7 @@
       "group": "right_tank"
     },
     {
-      "address": "28-00000a0d46da",
+      "address": "28-00000a0c6697",
       "label": "Middle",
       "index": 1,
       "group": "right_tank"

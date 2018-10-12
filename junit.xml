@@ -1,0 +1,16 @@
+<testsuites name="jest tests" tests="5" failures="0" time="1.119">
+  <testsuite name="should read from process.arch" errors="0" failures="0" skipped="0" timestamp="2018-10-12T17:55:34" time="0.382" tests="2">
+    <testcase classname="should read from process.arch When the arch is ARM should be a Raspberry Pi" name="should read from process.arch When the arch is ARM should be a Raspberry Pi" time="0.003">
+    </testcase>
+    <testcase classname="should read from process.arch When the arch is ARM should be a Raspberry Pi" name="should read from process.arch When the arch is ARM should be a Raspberry Pi" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Database" errors="0" failures="0" skipped="0" timestamp="2018-10-12T17:55:34" time="0.864" tests="3">
+    <testcase classname="Database Temperature controller Should create a temperature entry and return it" name="Database Temperature controller Should create a temperature entry and return it" time="0.17">
+    </testcase>
+    <testcase classname="Database Temperature controller Should return the latest of multiple entries" name="Database Temperature controller Should return the latest of multiple entries" time="0.04">
+    </testcase>
+    <testcase classname="Database Temperature controller Should create a temperature entry and return it" name="Database Temperature controller Should create a temperature entry and return it" time="0.005">
+    </testcase>
+  </testsuite>
+</testsuites>

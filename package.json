@@ -10,7 +10,9 @@
     "dev": "nodemon --inspect  index.js",
     "build": "next build",
     "server:dev": "NODE_ENV=production nodemon index.js",
-    "start": "NODE_ENV=production node index.js"
+    "start": "yarn db:migrate && NODE_ENV=production node index.js",
+    "test": "NODE_ENV=test yarn sequelize db:migrate && ./node_modules/.bin/jest",
+    "test:watch": "NODE_ENV=test yarn sequelize db:migrate && ./node_modules/.bin/jest --watch"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -25,6 +27,19 @@
     "sqlite3": "^4.0.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "jest": "^23.6.0",
+    "jest-junit": "^5.2.0",
+    "nodemon": "^1.18.4",
+    "sequelize-mock": "^0.10.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
