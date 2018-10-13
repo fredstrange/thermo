@@ -1,10 +1,10 @@
-const path = require('path')
-const server = require('express')()
+const express = require('express')
 const next = require('next')
-const apiRoutes = require('./server/routes')
-const DB = require('./server/db')
+const apiRoutes = require('./routes')
+const DB = require('./db')
 
 const App = async ({ dev, devices, groups }) => {
+  const server = express()
   const app = next({ dev })
   const webHandler = app.getRequestHandler()
 

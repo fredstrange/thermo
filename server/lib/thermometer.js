@@ -35,10 +35,11 @@ function Thermometer ({ address, Temperatures }) {
   readTemperature()
 
   async function data () {
-    const { temperature } = await Temperatures.findLatest(address)
+    const { temperature, createdAt } = await Temperatures.findLatest(address)
 
     return {
       temperature,
+      createdAt,
       address
     }
   }

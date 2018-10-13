@@ -1,16 +1,16 @@
-<testsuites name="jest tests" tests="5" failures="0" time="1.119">
-  <testsuite name="should read from process.arch" errors="0" failures="0" skipped="0" timestamp="2018-10-12T17:55:34" time="0.382" tests="2">
-    <testcase classname="should read from process.arch When the arch is ARM should be a Raspberry Pi" name="should read from process.arch When the arch is ARM should be a Raspberry Pi" time="0.003">
+<testsuites name="jest tests" tests="5" failures="0" time="5.658">
+  <testsuite name="Database" errors="0" failures="0" skipped="0" timestamp="2018-10-13T09:42:56" time="1.151" tests="3">
+    <testcase classname="Database Temperature controller Should create a temperature entry and return it" name="Database Temperature controller Should create a temperature entry and return it" time="0.239">
     </testcase>
-    <testcase classname="should read from process.arch When the arch is ARM should be a Raspberry Pi" name="should read from process.arch When the arch is ARM should be a Raspberry Pi" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Database" errors="0" failures="0" skipped="0" timestamp="2018-10-12T17:55:34" time="0.864" tests="3">
-    <testcase classname="Database Temperature controller Should create a temperature entry and return it" name="Database Temperature controller Should create a temperature entry and return it" time="0.17">
-    </testcase>
-    <testcase classname="Database Temperature controller Should return the latest of multiple entries" name="Database Temperature controller Should return the latest of multiple entries" time="0.04">
+    <testcase classname="Database Temperature controller Should return the latest of multiple entries" name="Database Temperature controller Should return the latest of multiple entries" time="0.027">
     </testcase>
     <testcase classname="Database Temperature controller Should create a temperature entry and return it" name="Database Temperature controller Should create a temperature entry and return it" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Temperature API endpoint" errors="0" failures="0" skipped="0" timestamp="2018-10-13T09:42:56" time="5.415" tests="2">
+    <testcase classname="Temperature API endpoint should contain groups" name="Temperature API endpoint should contain groups" time="3.536">
+    </testcase>
+    <testcase classname="Temperature API endpoint should contain temperatues" name="Temperature API endpoint should contain temperatues" time="0.932">
     </testcase>
   </testsuite>
 </testsuites>

@@ -15,11 +15,11 @@ function Thermometers (devices = [], Temperatures) {
     )
 
     return data.reduce((obj, thermometer) => {
-      const { temperature, address } = thermometer
+      const { temperature, address, createdAt } = thermometer
       const { index, group, label } = devicesObject[address]
 
       obj[group] = obj[group] || []
-      obj[group][index] = { temperature, label }
+      obj[group][index] = { temperature, label, createdAt }
       return obj
     }, {})
   }

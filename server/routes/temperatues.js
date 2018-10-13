@@ -5,8 +5,6 @@ function Temperatures (devices = [], groups = [], Temperatures) {
 
   return async (req, res) => {
     const temperatures = await thermometers.getTemperatures()
-    console.log(temperatures)
-
     res.json({ groups, temperatures })
   }
 }
