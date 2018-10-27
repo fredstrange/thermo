@@ -5,31 +5,34 @@ const PI_PATH = '/sys/bus/w1'
 const DEV_PATH = path.resolve(__dirname, '../fixtures')
 const INTERVAL = 30000
 const tempRegx = /t=(\d+)/
+const NOOP = () => {}
+
 
 function Thermometer ({ address, Temperatures }) {
   let timer = null
   const devicePath = `${isPi() ? PI_PATH : DEV_PATH}/devices/${address}/w1_slave`
 
   async function readTemperature () {
-    const exists = await fsProm.stat(devicePath).catch(() => false)
-    if (!exists) return
+    const exists = await fsProm.stat(devicePath).catch(NOOP)
+    
+    if (exists){
+      try {
+        const file = await fsProm.readFile(devicePath, { encoding: 'utf8' })
+        const temperature = tempRegx.exec(file)[1] / 1000
 
-    try {
-      const file = await fsProm.readFile(devicePath, { encoding: 'utf8' })
-      const temperature = tempRegx.exec(file)[1] / 1000
-
-      await Temperatures.create({
-        address,
-        temperature
-      })
-    } catch (e) {
-      console.log(`failed to open device file: ${address}`, e)
-    } finally {
-      if (timer) {
-        clearTimeout(timer)
+        await Temperatures.create({
+          address,
+          temperature
+        })
+      } catch (e) {
+        console.log(`failed to open device file: ${address}`, e)
       }
-      timer = setTimeout(readTemperature, INTERVAL)
     }
+
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(readTemperature, INTERVAL)
   }
 
   readTemperature()

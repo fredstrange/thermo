@@ -1,3 +1,5 @@
+const { Op } = require('sequelize')
+
 function TemperaturesController (db) {
   const Temperatures = db.import('../models/temperatures.js')
 
@@ -21,9 +23,28 @@ function TemperaturesController (db) {
     return response ? response.get({ plain: true }) : { temperature: 'N/A' }
   }
 
+  async function findRange ({ address, start, end = new Date() }) {
+    const response = await Temperatures.findAll({
+      where: {
+        address,
+        createdAt: {
+          [Op.between]: [new Date(start), new Date(end)]
+        }
+      },
+      limit: 10,
+      attributes: ['temperature', 'createdAt', 'address'],
+      order: [['createdAt', 'DESC']]
+    })
+
+    return response
+      ? response.map(resp => resp.get({ plain: true }))
+      : { temperature: 'N/A' }
+  }
+
   return {
     create,
-    findLatest
+    findLatest,
+    findRange
   }
 }
 
