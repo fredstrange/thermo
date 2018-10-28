@@ -42,7 +42,7 @@ describe('Temperature API endpoint', () => {
     )
   })
 
-  it('should contain temperatues', async () => {
+  it('should contain temperatures', async () => {
     const resp = await request(app)
       .get('/api/temperatures')
       .expect('Content-Type', /json/)
@@ -52,18 +52,21 @@ describe('Temperature API endpoint', () => {
       expect.objectContaining({
         left_tank: [
           {
-            temperature: 27.312,
-            label: 'Bottom',
+            temperature: 28.312,
+            label: 'Top',
+            address: expect.any(String),
             createdAt: expect.stringMatching(isoDateString)
           },
           {
             temperature: 26.412,
             label: 'Middle',
+            address: expect.any(String),
             createdAt: expect.stringMatching(isoDateString)
           },
           {
             temperature: 23.312,
-            label: 'Top',
+            label: 'Bottom',
+            address: expect.any(String),
             createdAt: expect.stringMatching(isoDateString)
           }
         ]
