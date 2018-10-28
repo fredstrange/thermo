@@ -1,38 +1,59 @@
-import { AreaChart, XAxis, Area, Tooltip, YAxis, CartesianGrid } from 'recharts'
+import React from 'react'
+import Highcharts from 'highcharts'
+// import HighchartsReact from 'highcharts-react-official'
+import {
+  HighchartsChart,
+  Chart,
+  withHighcharts,
+  XAxis,
+  YAxis,
+  LineSeries,
+  Tooltip
+} from 'react-jsx-highcharts'
 import moment from 'moment'
 
-export default ({ data = [] }) => (
-  <AreaChart
-    width={700}
-    height={150}
-    data={data}
-    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-  >
-    <defs>
-      <linearGradient id='colorUv' x1='0' y1='0' x2='0' y2='1'>
-        <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
-        <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
-      </linearGradient>
-    </defs>
-    <XAxis
-      dataKey='time'
-      tickFormatter={time => moment(time).format('HH:mm')}
-      tickCount={10}
-      type='number'
-      domain={['auto', 'auto']}
-    />
-    <YAxis />
-    <Tooltip
-      formatter={(value, name, props) => {
-        return value
-      }}
-    />
-    <Area
-      type='monotone'
-      dataKey='temperature'
-      stroke='#8884d8'
-      fillOpacity={1}
-      fill='url(#colorUv)'
-    />
-  </AreaChart>
-)
+const chart = ({ data = [] }) => {
+  // const dateData = data.map(d => [Date.parse(d[0]), d[1]])
+
+  console.log(data)
+
+  const options = {
+    spline: {
+      lineWidth: 4,
+      states: {
+        hover: {
+          lineWidth: 5
+        }
+      },
+      marker: {
+        enabled: true
+      }
+      //     pointStart: dateData[0][0]
+    },
+    yAxis: {
+      min: 0
+    }
+  }
+
+  return (
+    <div>
+      <HighchartsChart plotOptions={options}>
+        <Chart height={150} />
+        <Tooltip />
+        <XAxis type='datetime'>
+          <XAxis.Title>Time</XAxis.Title>
+
+        </XAxis>
+
+        <YAxis>
+          <YAxis.Title>Temperature</YAxis.Title>
+          {data.map(d => (
+            <LineSeries key={d.name} name={d.name} data={d.data} />
+          ))}
+        </YAxis>
+      </HighchartsChart>
+    </div>
+  )
+}
+
+export default withHighcharts(chart, Highcharts)

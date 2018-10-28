@@ -26,7 +26,7 @@ export default class extends React.Component {
           const isTank = group.type === 'tank'
 
           return (
-            <div>
+            <div key={group.label + group.id}>
               {isFurnace &&
                 <Furnace
                   label={group.label}

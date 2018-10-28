@@ -20,14 +20,10 @@ function Temperatures (devices = [], groups = [], Temperatures) {
 
     const byAddress = flatten(data).reduce((acc, val) => {
       if (!acc[val.address]) acc[val.address] = []
-      const time = new Date(val.createdAt).getTime()
+      const time = Date.parse(val.createdAt)
       const temperature = val.temperature
 
-      acc[val.address].push({
-        time,
-        temperature
-      })
-
+      acc[val.address].push([time, temperature])
       return acc
     }, {})
 

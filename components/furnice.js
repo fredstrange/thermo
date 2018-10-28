@@ -7,7 +7,9 @@ export default ({ label, temperatures = [] }) => (
   `}</style>
     <h2>{label}</h2>
     {temperatures.map(temperature => (
-      <div>{`${temperature.label}: ${temperature.temperature} °C`}</div>
+      <div
+        key={temperature.address}
+      >{`${temperature.label}: ${temperature.temperature} °C`}</div>
     ))}
   </div>
 )
