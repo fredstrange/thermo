@@ -19,7 +19,7 @@ function Thermometers (devices = [], Temperatures) {
       const { index, group, label } = devicesObject[address]
 
       obj[group] = obj[group] || []
-      obj[group][index] = { temperature, label, createdAt }
+      obj[group][index] = { temperature, label, createdAt, address }
       return obj
     }, {})
   }

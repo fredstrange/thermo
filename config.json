@@ -36,19 +36,19 @@
       "group": "left_tank"
     },
     {
-      "address": "28-00000a0dd1a3",
+      "address": "28-00000a0e6211",
       "label": "Top",
       "index": 0,
       "group": "right_tank"
     },
     {
-      "address": "28-00000a0c6697",
+      "address": "28-00000a0dd1a3",
       "label": "Middle",
       "index": 1,
       "group": "right_tank"
     },
     {
-      "address": "28-00000a0e6211",
+      "address": "28-00000a0c6697",
       "label": "Bottom",
       "index": 2,
       "group": "right_tank"
@@ -63,12 +63,6 @@
       "address": "28-000009a70346",
       "label": "Inlet",
       "index": 1,
-      "group": "furnace"
-    },
-    {
-      "address": "28-000009a70bad",
-      "label": "Not available",
-      "index": 2,
       "group": "furnace"
     }
   ]

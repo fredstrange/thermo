@@ -31,7 +31,7 @@ function TemperaturesController (db) {
           [Op.between]: [new Date(start), new Date(end)]
         }
       },
-      limit: 10,
+      limit: 100,
       attributes: ['temperature', 'createdAt', 'address'],
       order: [['createdAt', 'DESC']]
     })

@@ -7,16 +7,17 @@ export default class extends React.Component {
   static async getInitialProps ({ req }) {
     const { data } = await axios
       .get(`http://${req.headers.host}/api/temperatures`)
-      .catch(e => {
-        console.log(e)
-        return { data: {} }
-      })
+      .catch(e => ({ data: {} }))
 
-    return { data }
+    const { data: series } = await axios
+      .get(`http://${req.headers.host}/api/series`)
+      .catch(e => ({}))
+
+    return { data, series }
   }
 
   render () {
-    const { groups = [], temperatures } = this.props.data
+    const { data: { groups = [], temperatures }, series } = this.props
 
     return (
       <div>
@@ -35,6 +36,7 @@ export default class extends React.Component {
                 <Tank
                   label={group.label}
                   temperatures={temperatures[group.id]}
+                  series={series}
                 />}
             </div>
           )

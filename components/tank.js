@@ -1,5 +1,7 @@
 import moment from 'moment'
-export default ({ label = '', temperatures = [] }) => (
+import Chart from './chart'
+
+export default ({ label = '', temperatures = [], series = {} }) => (
   <div className='container'>
     <style jsx>{`
       .container {
@@ -23,6 +25,9 @@ export default ({ label = '', temperatures = [] }) => (
               <h3 className='label'>{`${temperature.label}: `}</h3>
               <span className='number'>{`${temperature.temperature} °C`}</span>
               <span> {moment(temperature.createdAt).fromNow()}</span>
+            </div>
+            <div className='chart'>
+              <Chart data={series[temperature.address]} />
             </div>
           </div>}
       </div>

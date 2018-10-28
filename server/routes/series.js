@@ -1,5 +1,5 @@
 const moment = require('moment')
-const { pluck } = require('ramda')
+const { pluck, flatten } = require('ramda')
 
 function Temperatures (devices = [], groups = [], Temperatures) {
   return async (req, res) => {
@@ -14,15 +14,24 @@ function Temperatures (devices = [], groups = [], Temperatures) {
           end: new Date()
         })
 
-        console.log(res[address])
-
         return res
       }, {})
     )
 
-    console.log('data', data)
+    const byAddress = flatten(data).reduce((acc, val) => {
+      if (!acc[val.address]) acc[val.address] = []
+      const time = new Date(val.createdAt).getTime()
+      const temperature = val.temperature
 
-    res.json({ data })
+      acc[val.address].push({
+        time,
+        temperature
+      })
+
+      return acc
+    }, {})
+
+    res.json(byAddress)
   }
 }
 module.exports = Temperatures
