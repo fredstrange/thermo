@@ -13,10 +13,6 @@ import {
 import moment from 'moment'
 
 const chart = ({ data = [] }) => {
-  // const dateData = data.map(d => [Date.parse(d[0]), d[1]])
-
-  console.log(data)
-
   const options = {
     spline: {
       lineWidth: 4,
@@ -28,7 +24,6 @@ const chart = ({ data = [] }) => {
       marker: {
         enabled: true
       }
-      //     pointStart: dateData[0][0]
     },
     yAxis: {
       min: 0
