@@ -63,5 +63,11 @@ The service uses SQLite to store the temperature to display the temperature over
 ### Start on boot
 Start the service with PM2
 `pm2 ./index.js`
-Tell PM2 to save the service configuration and run on startup.
+Tell PM2 to run on startup.
 `pm2 startup`
+
+Run the command presented in the console something like this.
+`sudo env PATH=$PATH:/home/pi/.nvm/versions/node/v10.13.0/bin /home/pi/.nvm/versions/node/v10.13.0/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi`
+
+ Save the service configuration
+`pm2 save`
