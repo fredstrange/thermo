@@ -33,7 +33,7 @@ const chart = ({ data = [] }) => {
   return (
     <div>
       <HighchartsChart plotOptions={options}>
-        <Chart height={150} />
+        <Chart height={300} />
         <Tooltip />
         <XAxis type='datetime'>
           <XAxis.Title>Time</XAxis.Title>
