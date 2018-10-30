@@ -4,10 +4,10 @@ import Highcharts from 'highcharts'
 import {
   HighchartsChart,
   Chart,
+  AreaSeries,
   withHighcharts,
   XAxis,
   YAxis,
-  LineSeries,
   Tooltip
 } from 'react-jsx-highcharts'
 import moment from 'moment'
@@ -43,7 +43,12 @@ const chart = ({ data = [] }) => {
         <YAxis>
           <YAxis.Title>Temperature</YAxis.Title>
           {data.map(d => (
-            <LineSeries key={d.name} name={d.name} data={d.data} />
+            <AreaSeries
+              key={d.name}
+              name={d.name}
+              data={d.data}
+              fillOpacity='0.25'
+            />
           ))}
         </YAxis>
       </HighchartsChart>

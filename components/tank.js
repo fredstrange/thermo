@@ -46,7 +46,7 @@ export default ({ label = '', temperatures = [], series = {} }) => {
         </div>
       ))}
       <div className='chart'>
-        <Chart group={label} data={chartData} />
+        <Chart data={chartData} />
       </div>
     </div>
   )
