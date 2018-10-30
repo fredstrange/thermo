@@ -24,9 +24,6 @@ const chart = ({ data = [] }) => {
       marker: {
         enabled: true
       }
-    },
-    yAxis: {
-      min: 0
     }
   }
 
