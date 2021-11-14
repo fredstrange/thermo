@@ -1,5 +1,5 @@
 const R = require('ramda')
-const Thermometer = require('./thermometer')
+const Thermometer = require('./thermometerReader')
 
 const indexBy = (key, list) => R.zipObj(R.pluck(key, list), R.values(list))
 

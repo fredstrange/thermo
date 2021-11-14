@@ -1,7 +1,13 @@
-const { Op } = require('sequelize')
 
-function TemperaturesController (db) {
-  const Temperatures = db.import('../models/temperatures.js')
+function TemperaturesController () {
+  const Temperatures = {
+    create: (data)=>{
+      console.log(data);
+      return Promise.resolve()
+    },
+    find: ()=>{Promise.resolve()},
+    findAll: ()=>{Promise.resolve()}
+  }
 
   async function create ({ address, temperature }) {
     return await Temperatures.create({
@@ -28,7 +34,7 @@ function TemperaturesController (db) {
       where: {
         address,
         createdAt: {
-          [Op.between]: [new Date(start), new Date(end)]
+          ['between']: [new Date(start), new Date(end)]
         }
       },
       //   limit: 100,
