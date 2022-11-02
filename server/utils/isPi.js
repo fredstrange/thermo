@@ -1,5 +1,5 @@
-function isPi () {
-  return process.arch.includes('arm')
+function isPi() {
+  return process.arch.includes("arm");
 }
 
-module.exports = isPi
+export default isPi;

@@ -1,30 +1,30 @@
-const R = require('ramda')
-const Thermometer = require('./thermometerReader')
+import { zipObj, pluck, values } from "ramda";
+import Thermometer from "./thermometerReader";
 
-const indexBy = (key, list) => R.zipObj(R.pluck(key, list), R.values(list))
+const indexBy = (key, list) => zipObj(pluck(key, list), values(list));
 
-function Thermometers (devices = [], Temperatures) {
-  const thermometers = devices.map(device =>
+function Thermometers(devices = [], Temperatures) {
+  const thermometers = devices.map((device) =>
     Thermometer({ address: device.address, Temperatures })
-  )
-  const devicesObject = indexBy('address', devices)
+  );
+  const devicesObject = indexBy("address", devices);
 
-  async function getTemperatures () {
+  async function getTemperatures() {
     const data = await Promise.all(
-      thermometers.map(thermometer => thermometer.data())
-    )
+      thermometers.map((thermometer) => thermometer.data())
+    );
 
     return data.reduce((obj, thermometer) => {
-      const { temperature, address, createdAt } = thermometer
-      const { index, group, label } = devicesObject[address]
+      const { temperature, address, createdAt } = thermometer;
+      const { index, group, label } = devicesObject[address];
 
-      obj[group] = obj[group] || []
-      obj[group][index] = { temperature, label, createdAt, address }
-      return obj
-    }, {})
+      obj[group] = obj[group] || [];
+      obj[group][index] = { temperature, label, createdAt, address };
+      return obj;
+    }, {});
   }
 
-  return { getTemperatures }
+  return { getTemperatures };
 }
 
-module.exports = Thermometers
+export default Thermometers;
