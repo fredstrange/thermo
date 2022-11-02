@@ -1,11 +1,11 @@
-const Thermometers = require('../lib/thermometers')
+import Thermometers from "../lib/thermometers";
 
-function Temperatures (devices = [], groups = [], Temperatures) {
-  const thermometers = Thermometers(devices, Temperatures)
+function Temperatures(devices = [], groups = [], Temperatures) {
+  const thermometers = Thermometers(devices, Temperatures);
 
   return async (req, res) => {
-    const temperatures = await thermometers.getTemperatures()
-    res.json({ groups, temperatures })
-  }
+    const temperatures = await thermometers.getTemperatures();
+    res.json({ groups, temperatures });
+  };
 }
-module.exports = Temperatures
+export default Temperatures;

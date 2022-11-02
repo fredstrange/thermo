@@ -1,11 +1,11 @@
-const TemperaturesController = require('./controllers/temperatures')
+import TemperaturesController from "./controllers/temperatures";
 
-function DB () {
-  const Temperatures = TemperaturesController()
+function DB() {
+  const Temperatures = TemperaturesController();
 
   return {
-    Temperatures
-  }
+    Temperatures,
+  };
 }
 
-module.exports = DB
+export default DB;
