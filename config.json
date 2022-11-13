@@ -1,4 +1,6 @@
 {
+  "port": 4000,
+  "poll_intervall": 5000,
   "groups": [
     {
       "id": "left_tank",

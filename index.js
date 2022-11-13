@@ -1,11 +1,11 @@
-const App = require('./server/app')
-const config = require('./config.json')
+import App from './server/app.js'
+import config from './config.json' assert { type: 'json' }
 
-async function run () {
+async function run() {
   const dev = process.env.NODE_ENV !== 'production'
-  const app = await App({ dev, ...config})
+  const app = await App({ dev, ...config })
 
-  app.listen(3000)
+  app.listen(config.port)
 }
 
 run()
