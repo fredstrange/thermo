@@ -1,11 +1,8 @@
-import Thermometers from "../lib/thermometers";
+import client from 'prom-client'
 
-function Temperatures(devices = [], groups = [], Temperatures) {
-  const thermometers = Thermometers(devices, Temperatures);
+function temperatures(req, res, next) {
+  const temperatures = client.register.getSingleMetric('temperature')
 
-  return async (req, res) => {
-    const temperatures = await thermometers.getTemperatures();
-    res.json({ groups, temperatures });
-  };
+  res.json(temperatures.hashMap)
 }
-export default Temperatures;
+export default temperatures

@@ -1,20 +1,15 @@
-import express from "express";
-import next from "next";
-import apiRoutes from "./routes";
-import DB from "./db";
+import express from 'express'
+import apiRoutes from './routes/index.js'
+import { initThermometers } from './temperature/index.js'
 
-const App = async ({ dev, devices, groups }) => {
-  const server = express();
-  const app = next({ dev });
-  const webHandler = app.getRequestHandler();
+const App = async ({ dev, devices, groups, poll_intervall }) => {
+  const server = express()
 
-  const db = DB();
+  initThermometers(devices, poll_intervall)
 
-  await app.prepare();
-  server.use("/api", apiRoutes({ devices, groups, db }));
-  server.get("*", webHandler);
+  server.use('/api', apiRoutes({ devices, groups }))
 
-  return server;
-};
+  return server
+}
 
-export default App;
+export default App

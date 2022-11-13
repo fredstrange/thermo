@@ -1,13 +1,14 @@
-import { AsyncRouter } from "express-async-router";
-import temperatures from "./temperatues";
-import series from "./series";
+import { AsyncRouter } from 'express-async-router'
+import metricsMiddleware from './metrics.js'
+import temperatures from './temperatues.js'
 
-function routes({ devices = [], groups = [], db = {} }) {
-  const router = AsyncRouter();
-  router.get("/temperatures", temperatures(devices, groups, db.Temperatures));
-  router.get("/series", series(devices, groups, db.Temperatures));
+function routes() {
+  const router = AsyncRouter()
 
-  return router;
+  router.get('/metrics', metricsMiddleware)
+  router.get('/temperatures', temperatures)
+
+  return router
 }
 
-export default routes;
+export default routes

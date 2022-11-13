@@ -61,6 +61,7 @@ The service uses SQLite to store the temperature to display the temperature over
 `yarn db:migrate`
 
 ### Start on boot
+
 Start the service with PM2
 `pm2 ./index.js`
 Tell PM2 to run on startup.
@@ -69,5 +70,74 @@ Tell PM2 to run on startup.
 Run the command presented in the console something like this.
 `sudo env PATH=$PATH:/home/pi/.nvm/versions/node/v10.13.0/bin /home/pi/.nvm/versions/node/v10.13.0/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi`
 
- Save the service configuration
+Save the service configuration
 `pm2 save`
+
+### Prometheus
+
+https://pimylifeup.com/raspberry-pi-prometheus/
+
+`sudo apt update`
+`sudo apt full-upgrade`
+
+We can download the pre-compiled version of Prometheus for the ARMv7 architecture.
+`wget https://github.com/prometheus/prometheus/releases/download/v2.40.1/prometheus-2.40.1.linux-armv7.tar.gz`
+
+Extract the binaries outside of the archive you downloaded by running the following command.
+`tar xfz prometheus-2.40.1.linux-armv7.tar.gz`
+
+Doing this makes it easier to reference the files within the directory. Use the mv command to rename the directory to prometheus.
+`mv prometheus-2.40.1.linux-armv7/ prometheus/`
+
+Delete the Prometheus archive by running the following command on your Raspberry Pi.
+`rm prometheus-2.40.1.linux-armv7.tar.gz`
+
+With that done, we now have Prometheus installed on our Raspberry Pi.
+
+Setting up a Service for Prometheus
+A service is what allows you to have a software automatically started up at boot. It also allows you to start and stop the software quickly.
+
+To create a service, we need to create a new file within the “/etc/systemd/system/” directory.
+
+Begin writing the new service file by running the following command on your Pi.
+
+`sudo nano /etc/systemd/system/prometheus.service`
+
+Within this file, enter the following text.
+
+The text defines how the service works and how it should run the Prometheus software.
+
+```
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=network-online.target
+
+[Service]
+User=pi
+Restart=on-failure
+
+ExecStart=/home/pi/prometheus/prometheus \
+  --config.file=/home/pi/prometheus/prometheus.yml \
+  --storage.tsdb.path=/home/pi/prometheus/data
+
+[Install]
+WantedBy=multi-user.target
+```
+
+With the way this service file is written, it will run the Prometheus software on your Raspberry Pi once the network has come online.
+
+Upon starting up, it will run the Prometheus executable located at “/home/pi/prometheus/prometheus“.
+
+We pass in both the config file location and a storage location for the database that the monitoring software requires.
+
+If you ever need to modify the config file, you can find it at “/home/pi/prometheus/prometheus.yml“.
+
+To enable the Prometheus service, we can run the following command.
+`sudo systemctl enable prometheus`
+
+To start the service, run the following command.
+`sudo systemctl start prometheus`
+
+Check the status
+`sudo systemctl status prometheus`
