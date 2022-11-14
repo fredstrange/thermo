@@ -32,9 +32,10 @@ https://pinout.xyz/pinout/1_wire
 
 ### Install NodeJs via NVM
 
-`curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash`
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash`
 
-`nvm install 10`
+`nvm install 18`
+`nvm alias default 18`
 
 ### Install Yarn
 
@@ -43,22 +44,12 @@ https://pinout.xyz/pinout/1_wire
 ### Install PM2
 
 PM2 is a process manager for ensuring that the service can start up on boot and much more.
-`npm install pm2@latest -g`
+`yarn global add pm2`
 
 ### Clone and install
 
 `yarn install --prod`
 This will compile SQLite3 from source on the Pi so it will take a while to complete (530 seconds on Pi 3)
-
-### Build the static files
-
-The service uses NextJS which uses SSR and statically compiled assets. You need to builds all the assets before you start the service.
-`yarn build`
-
-### Run the database migration
-
-The service uses SQLite to store the temperature to display the temperature over time.
-`yarn db:migrate`
 
 ### Start on boot
 
@@ -68,7 +59,7 @@ Tell PM2 to run on startup.
 `pm2 startup`
 
 Run the command presented in the console something like this.
-`sudo env PATH=$PATH:/home/pi/.nvm/versions/node/v10.13.0/bin /home/pi/.nvm/versions/node/v10.13.0/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi`
+`sudo env PATH=$PATH:/home/pi/.nvm/versions/node/v18.12.1/bin /home/pi/.nvm/versions/node/v18.12.1/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi`
 
 Save the service configuration
 `pm2 save`
@@ -103,9 +94,7 @@ Begin writing the new service file by running the following command on your Pi.
 
 `sudo nano /etc/systemd/system/prometheus.service`
 
-Within this file, enter the following text.
-
-The text defines how the service works and how it should run the Prometheus software.
+Within this file, enter the following text. The text defines how the service works and how it should run the Prometheus software.
 
 ```
 [Unit]
@@ -141,3 +130,25 @@ To start the service, run the following command.
 
 Check the status
 `sudo systemctl status prometheus`
+
+### Grafana
+
+https://pimylifeup.com/raspberry-pi-grafana/
+
+To add the Grafana APT key to your Raspberry Pi’s keychain, run the following command.
+`curl https://packages.grafana.com/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/grafana-archive-keyrings.gpg >/dev/null`
+
+Use the following command on your Raspberry Pi to add the repository to the list.
+`echo "deb [signed-by=/usr/share/keyrings/grafana-archive-keyrings.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list`
+
+Running an update with apt allows it to fetch the latest list of packages from all sources.
+`sudo apt update`
+
+We can install the latest version of Grafana by running the following command on your device.
+`sudo apt install grafana`
+
+To enable Grafana to start at boot, all we need to do is run the following command.
+`sudo systemctl enable grafana-server`
+
+Finally, let’s start up the Grafana server software by running the command below in the Pi’s terminal.
+`sudo systemctl start grafana-server`
