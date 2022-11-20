@@ -18,10 +18,11 @@ export function initThermometers(devices, poll_intervall = 30000) {
     thermometers.forEach((thermometer) => {
       thermometer.readTemperature()
     })
-  }
 
-  if (timer) {
-    clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+    }
+
+    timer = setTimeout(readTemperature, poll_intervall)
   }
-  timer = setTimeout(readTemperature, poll_intervall)
 }
