@@ -25,4 +25,6 @@ export function initThermometers(devices, poll_intervall = 30000) {
 
     timer = setTimeout(readTemperature, poll_intervall)
   }
+
+  readTemperature()
 }
