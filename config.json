@@ -1,6 +1,7 @@
 {
   "port": 4000,
   "poll_intervall": 5000,
+  "netatmo_poll_intervall": 300000,
   "groups": [
     {
       "id": "left_tank",

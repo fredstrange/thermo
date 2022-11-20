@@ -1,5 +1,4 @@
 import { promises as fsProm } from 'fs'
-import { resolve } from 'path'
 import isPi from '../utils/isPi.js'
 const PI_PATH = '/sys/bus/w1'
 const DEV_PATH = 'server/fixtures'
